@@ -16,7 +16,6 @@ export default createGlobalStyle`
           display: flex;
           font-family: sans-serif;
           justify-content: center;
-          margin-top: 8%;
           padding: 15px;
         }
       }
