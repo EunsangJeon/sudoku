@@ -33,7 +33,6 @@ function fillGrid(grid: Grid) {
       for (let value of numbers) {
         if (!isInRow({ grid, row, value })) {
           if (!isInCol({ col, grid, value })) {
-            // TODO test functions for row&col check
             // TODO square identification
             // TODO square check
             grid[row][col] = value;
