@@ -1,6 +1,6 @@
 import { AnyAction } from 'redux';
 
-import { createFullGrid } from 'utils';
+import { copyGrid, createFullGrid, removeNumbers } from 'utils';
 
 import { IReducer } from './interfaces';
 import * as types from './types';
@@ -10,9 +10,13 @@ const initialState: IReducer = {};
 function reducer(state = initialState, action: AnyAction) {
   switch (action.type) {
     case types.CREATE_GRID:
+      const solvedGrid = createFullGrid();
+      const copyOfSolvedGrid = copyGrid(solvedGrid);
+      const challengeGrid = removeNumbers(copyOfSolvedGrid);
+
       return {
         ...state,
-        grid: createFullGrid(),
+        grid: challengeGrid,
       };
 
     case types.SELECT_BLOCK:

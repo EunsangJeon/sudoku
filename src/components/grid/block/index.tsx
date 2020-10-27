@@ -39,7 +39,7 @@ const Block: FC<IProps> = ({ colIndex, rowIndex }) => {
       data-cy={`block-${rowIndex}-${colIndex}`}
       onClick={handleClick}
     >
-      {state.value}
+      {state.value || ''}
     </Container>
   );
 };
