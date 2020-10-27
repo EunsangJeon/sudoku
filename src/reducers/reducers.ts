@@ -13,10 +13,13 @@ function reducer(state = initialState, action: AnyAction) {
       const solvedGrid = createFullGrid();
       const copyOfSolvedGrid = copyGrid(solvedGrid);
       const challengeGrid = removeNumbers(copyOfSolvedGrid);
+      const workingGrid = copyGrid(challengeGrid);
 
       return {
         ...state,
-        grid: challengeGrid,
+        challengeGrid,
+        solvedGrid,
+        workingGrid,
       };
 
     case types.SELECT_BLOCK:
