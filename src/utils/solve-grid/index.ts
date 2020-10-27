@@ -16,7 +16,7 @@ function solveGrid(grid: Grid) {
     row = Math.floor(i / 9);
     col = i % 9;
 
-    if (grid[col][row] === 0) {
+    if (grid[row][col] === 0) {
       for (let value of numbers) {
         if (!isInRow({ grid, row, value })) {
           if (!isInCol({ col, grid, value })) {

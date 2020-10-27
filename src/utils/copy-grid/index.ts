@@ -1,5 +1,9 @@
 import { Grid, Index } from 'typings';
 
+/**
+ * Returns copy of input grid
+ * @param grid 9 * 9 sudoku grid
+ */
 function copyGrid(grid: Grid): Grid {
   const gridCopy: Grid = [
     [0, 0, 0, 0, 0, 0, 0, 0, 0],

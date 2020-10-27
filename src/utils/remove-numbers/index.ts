@@ -15,11 +15,9 @@ function removeNumbers(grid: Grid, attempts = 5) {
     do {
       row = getRandomIndex();
       col = getRandomIndex();
-      console.log(`row ${row} col ${col}`);
     } while (grid[row][col] === 0);
 
     const backup = grid[row][col];
-    console.log(`row ${row} col ${col} value ${backup}`);
     grid[row][col] = 0;
 
     const gridCopy = copyGrid(grid);
