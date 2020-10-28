@@ -7,25 +7,35 @@ import { createGrid, fillBlock, IReducer, selectBlock } from 'reducers';
 
 import Block from './block';
 import { Container, Row } from './styles';
-import { BlockCoords, Index, SudokuInteger, SudokuNumber } from 'typings';
+import {
+  BlockCoords,
+  Grid as GridType,
+  Index,
+  SudokuInteger,
+  SudokuNumber,
+} from 'typings';
 
 interface IState {
   selectedBlock?: BlockCoords;
   selectedValue?: SudokuInteger;
+  sovledGrid?: GridType;
 }
 
 const Grid: FC = () => {
-  const dispatch = useDispatch<Dispatch<AnyAction>>();
   const state = useSelector<IReducer, IState>(
-    ({ selectedBlock, workingGrid }) => ({
+    ({ selectedBlock, solvedGrid, workingGrid }) => ({
       selectedBlock,
       selectedValue:
         workingGrid && selectedBlock
           ? workingGrid[selectedBlock[0]][selectedBlock[1]]
           : 0,
+      solvedGrid,
     })
   );
+
+  const dispatch = useDispatch<Dispatch<AnyAction>>();
   const create = useCallback(() => dispatch(createGrid()), [dispatch]);
+
   const fill = useCallback(
     (n: SudokuNumber) => {
       if (state.selectedBlock && state.selectedValue === 0) {
@@ -34,10 +44,6 @@ const Grid: FC = () => {
     },
     [dispatch, state.selectedBlock, state.selectedValue]
   );
-
-  useEffect(() => {
-    create();
-  }, [create]);
 
   function moveDown() {
     if (state.selectedBlock && state.selectedBlock[0] < 8) {
@@ -97,11 +103,18 @@ const Grid: FC = () => {
   useMouseTrap('right', moveRight);
   useMouseTrap('up', moveUp);
 
+  useEffect(() => {
+    console.log(state.sovledGrid);
+    if (!state.sovledGrid) {
+      create();
+    }
+  }, [create, state.sovledGrid]);
+
   return (
-    <Container data-cy="grid-container">
+    <Container>
       {Children.toArray(
         [...Array(9)].map((_, rowIndex) => (
-          <Row data-cy="grid-row-container">
+          <Row>
             {Children.toArray(
               [...Array(9)].map((_, colIndex) => (
                 <Block

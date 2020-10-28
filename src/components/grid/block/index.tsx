@@ -41,7 +41,6 @@ const Block: FC<IProps> = ({ colIndex, rowIndex }) => {
   return (
     <Container
       active={state.isActive}
-      data-cy={`block-${rowIndex}-${colIndex}`}
       onClick={handleClick}
       puzzle={state.isPuzzle}
     >
