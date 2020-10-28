@@ -104,7 +104,6 @@ const Grid: FC = () => {
   useMouseTrap('up', moveUp);
 
   useEffect(() => {
-    console.log(state.sovledGrid);
     if (!state.sovledGrid) {
       create();
     }
